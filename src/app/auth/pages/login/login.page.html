@@ -1,0 +1,64 @@
+<ion-content padding>
+  <h1 class="text-center">
+    <ion-icon name="checkmark-done-circle-outline" color="primary" class="icon-7em"></ion-icon>
+  </h1>
+
+  <form [formGroup]="authForm" (submit)="onSubmit()">
+
+    <ng-container *ngIf="!configs.isSignIn">
+
+      <ion-item>
+        <ion-icon name="person" color="primary" slot="start"></ion-icon>
+        <ion-input type="text" placeholder="Nome" formControlName="nome"></ion-input>
+
+        <ion-note slot="end" color="danger" *ngIf="nome.dirty && nome.hasError('required')">
+          Obrigatório
+        </ion-note>
+
+        <ion-note slot="end" color="danger" *ngIf="nome.dirty && nome.hasError('minlength')">
+          Mínimo 3 caracteres
+        </ion-note>
+      </ion-item>
+
+    </ng-container>
+
+    <ion-item>
+      <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+      <ion-input type="email" placeholder="Email" formControlName="email" inputmode="email" autofocus="true">
+      </ion-input>
+
+      <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
+        Obrigatório
+      </ion-note>
+
+      <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
+        Email Inválido
+      </ion-note>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="lock-closed" color="primary" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+
+      <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">
+        Obrigatório
+      </ion-note>
+
+      <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('minlength')">
+        Mínimo 6 caracteres
+      </ion-note>
+
+
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="authForm.invalid">{{configs.action}}</ion-button>
+
+  </form>
+
+  <ion-button expand="block" fill="clear" (click)="changeAuthAction()">{{configs.actionChange}}</ion-button>
+  <ion-button expand="block">
+    <ion-icon name="logo-facebook" slot="start"></ion-icon>
+    Entrar com o Facebook
+  </ion-button>
+</ion-content>
