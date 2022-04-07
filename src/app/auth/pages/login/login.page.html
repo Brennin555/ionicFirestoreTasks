@@ -3,7 +3,7 @@
     <ion-icon name="checkmark-done-circle-outline" color="primary" class="icon-7em"></ion-icon>
   </h1>
 
-  <form [formGroup]="authForm" (submit)="onSubmit()">
+  <form [formGroup]="authForm" (submit)="onSubmit(authProviders.email)">
 
     <ng-container *ngIf="!configs.isSignIn">
 
@@ -57,7 +57,7 @@
   </form>
 
   <ion-button expand="block" fill="clear" (click)="changeAuthAction()">{{configs.actionChange}}</ion-button>
-  <ion-button expand="block">
+  <ion-button expand="block" (click)= "onSubmit(authProviders.facebook)" >
     <ion-icon name="logo-facebook" slot="start"></ion-icon>
     Entrar com o Facebook
   </ion-button>
