@@ -70,11 +70,6 @@ export class LoginPage implements OnInit {
 
   }
 
-
-
-
-
-
   private createForm(): void {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
